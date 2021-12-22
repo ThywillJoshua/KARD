@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { base_url } from "../apiUrl";
-import { GAMES_RECIEVED } from "../reducer";
+import { GAMES_RECIEVED } from "../gamesReducer";
 import {
   GET_POPULAR_GAMES_REQUEST,
   GET_NEW_GAMES_REQUEST,
@@ -21,18 +21,17 @@ const api =
 
     next(action);
 
-    const { url, method, data, onSuccess, onError } = action.payload;
+    const { url, method, data } = action.payload;
 
     try {
       const response = await Axios({ baseURL: base_url, url, method, data });
-      console.log(response.data);
 
       dispatch(
         GAMES_RECIEVED({ actionType: action.type, response: response.data })
       );
       // dispatch({ type: onSuccess, payload: response.data });
     } catch (error) {
-      dispatch({ type: onError, payload: error.message });
+      console.log(error.message);
     }
   };
 

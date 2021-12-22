@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import api from "./middleware.js/apiMiddleware";
 
-import reducer from "./reducer";
+import reducer from "./gamesReducer";
 
 const store = configureStore({ reducer, middleware: [api] });
 

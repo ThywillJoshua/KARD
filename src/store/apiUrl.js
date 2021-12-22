@@ -1,6 +1,3 @@
-//Base URL
-export const base_url = `https://api.rawg.io/api`;
-
 //Get Date
 const getAllDate = () => {
   const day = String(new Date().getDate()).padStart(2, "0");
@@ -14,9 +11,16 @@ const getAllDate = () => {
   return { currentDate, lastYear, nextYear };
 };
 
-const { currentDate, lastYear } = getAllDate();
+const { currentDate, lastYear, nextYear } = getAllDate();
+
+//Base URL
+export const base_url = `https://api.rawg.io/api`;
 
 //Popular Games
-export const popular_games = `/games?key=dcff681c6bb14785bbd735ff2588acad&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
+export const popularGames = `/games?key=${process.env.REACT_APP_API_KEY}&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
 
-export const popularGamesUrl = () => `${base_url}${popular_games}`;
+//Upcoming Games
+export const upcomingGames = `/games?key=${process.env.REACT_APP_API_KEY}&dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
+
+//New Games
+export const newGames = `/games?key=${process.env.REACT_APP_API_KEY}&dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
