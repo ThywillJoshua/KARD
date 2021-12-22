@@ -5,9 +5,9 @@ import {
   GET_POPULAR_GAMES_REQUEST,
   GET_NEW_GAMES_REQUEST,
   GET_UPCOMING_GAMES_REQUEST,
-} from "../api";
+} from "../gameActions";
 
-const api =
+const gamesMiddleware =
   ({ dispatch }) =>
   (next) =>
   async (action) => {
@@ -29,10 +29,11 @@ const api =
       dispatch(
         GAMES_RECIEVED({ actionType: action.type, response: response.data })
       );
+
       // dispatch({ type: onSuccess, payload: response.data });
     } catch (error) {
       console.log(error.message);
     }
   };
 
-export default api;
+export default gamesMiddleware;

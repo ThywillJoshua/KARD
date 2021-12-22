@@ -24,3 +24,11 @@ export const upcomingGames = `/games?key=${process.env.REACT_APP_API_KEY}&dates=
 
 //New Games
 export const newGames = `/games?key=${process.env.REACT_APP_API_KEY}&dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
+
+//Game Details
+export const gameID = (game_id) =>
+  `/games/${game_id}?key=${process.env.REACT_APP_API_KEY}`;
+
+//Game Screenshots
+export const gameScreenshots = (game_pk) =>
+  `/games/${game_pk}/screenshots?key=${process.env.REACT_APP_API_KEY}`;

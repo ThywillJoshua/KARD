@@ -3,7 +3,7 @@ import {
   GET_POPULAR_GAMES_REQUEST,
   GET_NEW_GAMES_REQUEST,
   GET_UPCOMING_GAMES_REQUEST,
-} from "./api";
+} from "./gameActions";
 
 //url endpoints
 import { popularGames, upcomingGames, newGames } from "./apiUrl";
@@ -21,19 +21,18 @@ const slice = createSlice({
 
       switch (actionType) {
         case GET_POPULAR_GAMES_REQUEST.type:
-          response.results.forEach((action) => state.popularGames.push(action));
+          state.popularGames = response.results;
+
           break;
         case GET_NEW_GAMES_REQUEST.type:
-          response.results.forEach((action) => state.newGames.push(action));
+          state.newGames = response.results;
           break;
         case GET_UPCOMING_GAMES_REQUEST.type:
-          response.results.forEach((action) =>
-            state.upcomingGames.push(action)
-          );
+          state.upcomingGames = response.results;
           break;
 
         default:
-          break;
+          return state;
       }
     },
   },

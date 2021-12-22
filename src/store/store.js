@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import api from "./middleware.js/apiMiddleware";
+import gamesMiddleware from "./middleware.js/gamesMiddleware";
+import detailMiddleware from "./middleware.js/detailMiddleware";
 
-import reducer from "./gamesReducer";
+import reducer from "./reducer";
 
-const store = configureStore({ reducer, middleware: [api] });
-
-export default store;
+export default configureStore({
+  reducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(gamesMiddleware, detailMiddleware),
+});
