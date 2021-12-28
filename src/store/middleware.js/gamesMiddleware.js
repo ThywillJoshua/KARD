@@ -19,9 +19,11 @@ const gamesMiddleware =
       return next(action);
     }
 
-    next(action);
+    const { url, method, data, onStart, onError } = action.payload;
 
-    const { url, method, data } = action.payload;
+    if (onStart) dispatch({ type: onStart });
+
+    next(action);
 
     try {
       const response = await Axios({ baseURL: base_url, url, method, data });
@@ -32,7 +34,7 @@ const gamesMiddleware =
 
       // dispatch({ type: onSuccess, payload: response.data });
     } catch (error) {
-      console.log(error.message);
+      dispatch({ type: onError, payload: error.message });
     }
   };
 

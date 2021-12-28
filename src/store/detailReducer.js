@@ -5,21 +5,38 @@ const slice = createSlice({
   initialState: {
     description: [],
     screenshots: [],
+    loading: false,
+    error: "",
   },
   reducers: {
+    GAMES_DETAIL_REQUESTED: (state, action) => {
+      state.loading = true;
+      state.description = [];
+      state.screenshots = [];
+    },
+
+    GAMES_DETAIL_REQUEST_FAILED: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
+
     GAMES_DETAIL_RECIEVED: (state, action) => {
       state.description = [action.payload.response];
-      console.log(action.payload.response);
+      state.loading = false;
     },
 
     GAMES_SCREENSHOT_RECIEVED: (state, action) => {
       state.screenshots = action.payload.response;
-      console.log(action.payload.response);
+      state.loading = false;
     },
   },
 });
 
-export const { GAMES_DETAIL_RECIEVED, GAMES_SCREENSHOT_RECIEVED } =
-  slice.actions;
+export const {
+  GAMES_DETAIL_RECIEVED,
+  GAMES_SCREENSHOT_RECIEVED,
+  GAMES_DETAIL_REQUESTED,
+  GAMES_DETAIL_REQUEST_FAILED,
+} = slice.actions;
 
 export default slice.reducer;

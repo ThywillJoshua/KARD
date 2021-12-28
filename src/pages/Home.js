@@ -18,12 +18,19 @@ import { v4 as uuidv4 } from "uuid";
 
 //Styling and Animation
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+
+//React Router
+import { useLocation } from "react-router-dom";
 
 export default function Home() {
   //Get data from store
   const state = useSelector((state) => state);
-  const { popularGames, newGames, upcomingGames } = state.games;
+  const { popularGames, newGames, upcomingGames, error, loading } = state.games;
+
+  //Game Detail Data
+  const { loading: detailLoading } = useSelector((state) => state.detail);
+  console.log(detailLoading);
 
   //Fetch Games
   const dispatch = useDispatch();
@@ -34,58 +41,71 @@ export default function Home() {
     dispatch(loadUpcomingGames());
   }, [dispatch]);
 
+  //React router
+  const location = useLocation().pathname.split("/");
+
+  const pathId = location[1] === "game";
+
   return (
     <GameList>
-      <GameDetail />
-      {upcomingGames && (
-        <>
-          <h2>Upcoming Games</h2>
-          <Games>
-            {upcomingGames.map((game) => (
-              <Game
-                key={uuidv4()}
-                name={game.name}
-                releaseDate={game.released}
-                id={game.id}
-                image={game.background_image}
-              />
-            ))}
-          </Games>
-        </>
-      )}
-      {popularGames && (
-        <>
-          <h2>Popular Games</h2>
-          <Games>
-            {popularGames.map((game) => (
-              <Game
-                key={uuidv4()}
-                name={game.name}
-                releaseDate={game.released}
-                id={game.id}
-                image={game.background_image}
-              />
-            ))}
-          </Games>
-        </>
-      )}
+      <AnimateSharedLayout type="crossfade">
+        <AnimatePresence>
+          {pathId && <GameDetail pathId={pathId} />}
+        </AnimatePresence>
 
-      {newGames && (
-        <>
-          <h2>New Games</h2>
-          <Games>
-            {newGames.map((game) => (
-              <Game
-                key={uuidv4()}
-                name={game.name}
-                releaseDate={game.released}
-                id={game.id}
-                image={game.background_image}
-              />
-            ))}
-          </Games>
-        </>
-      )}
+        {loading && <h3>Please wait...</h3>}
+        {error && <h3>Oops! Something went wrong</h3>}
+
+        {upcomingGames[0] && (
+          <>
+            <h2>Upcoming Games</h2>
+            <Games>
+              {upcomingGames.map((game) => (
+                <Game
+                  key={uuidv4()}
+                  name={game.name}
+                  releaseDate={game.released}
+                  id={game.id}
+                  image={game.background_image}
+                />
+              ))}
+            </Games>
+          </>
+        )}
+        {popularGames[0] && (
+          <>
+            <h2>Popular Games</h2>
+            <Games>
+              {popularGames.map((game) => (
+                <Game
+                  key={uuidv4()}
+                  name={game.name}
+                  releaseDate={game.released}
+                  id={game.id}
+                  image={game.background_image}
+                />
+              ))}
+            </Games>
+          </>
+        )}
+
+        {newGames[0] && (
+          <>
+            <h2>New Games</h2>
+            <Games>
+              {newGames.map((game) => (
+                <Game
+                  key={uuidv4()}
+                  name={game.name}
+                  releaseDate={game.released}
+                  id={game.id}
+                  image={game.background_image}
+                />
+              ))}
+            </Games>
+          </>
+        )}
+      </AnimateSharedLayout>
     </GameList>
   );
 }

@@ -14,8 +14,19 @@ const slice = createSlice({
     popularGames: [],
     newGames: [],
     upcomingGames: [],
+    loading: false,
+    error: "",
   },
   reducers: {
+    GAMES_REQUESTED: (state, action) => {
+      state.loading = true;
+    },
+
+    GAMES_REQUEST_FAILED: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
+
     GAMES_RECIEVED: (state, action) => {
       const { actionType, response } = action.payload;
 
@@ -34,11 +45,14 @@ const slice = createSlice({
         default:
           return state;
       }
+
+      state.loading = false;
     },
   },
 });
 
-export const { GAMES_RECIEVED } = slice.actions;
+export const { GAMES_RECIEVED, GAMES_REQUESTED, GAMES_REQUEST_FAILED } =
+  slice.actions;
 
 export default slice.reducer;
 
@@ -47,16 +61,22 @@ export const loadPopularGames = () =>
   GET_POPULAR_GAMES_REQUEST({
     url: popularGames,
     onSuccess: GAMES_RECIEVED.type,
+    onStart: GAMES_REQUESTED.type,
+    onError: GAMES_REQUEST_FAILED.type,
   });
 
 export const loadNewGames = () =>
   GET_NEW_GAMES_REQUEST({
     url: newGames,
     onSuccess: GAMES_RECIEVED.type,
+    onStart: GAMES_REQUESTED.type,
+    onError: GAMES_REQUEST_FAILED.type,
   });
 
 export const loadUpcomingGames = () =>
   GET_UPCOMING_GAMES_REQUEST({
     url: upcomingGames,
     onSuccess: GAMES_RECIEVED.type,
+    onStart: GAMES_REQUESTED.type,
+    onError: GAMES_REQUEST_FAILED.type,
   });

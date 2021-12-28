@@ -34,7 +34,7 @@ h2 {
 h3 {
     font-size: 1.1em;
     color: #333;
-    padding: 1.5rem;
+    padding: 1.5rem 0;
    
 }
 p {
@@ -46,6 +46,10 @@ p {
 a {
    text-decoration: none;
    color: #333;
+}
+
+img{
+    display: block;
 }
 
 `;
