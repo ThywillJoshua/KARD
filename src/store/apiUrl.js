@@ -32,3 +32,7 @@ export const gameID = (game_id) =>
 //Game Screenshots
 export const gameScreenshots = (game_pk) =>
   `/games/${game_pk}/screenshots?key=${process.env.REACT_APP_API_KEY}`;
+
+//Game Search url
+export const gameSearch = (game_name) =>
+  `/games?key=${process.env.REACT_APP_API_KEY}&search=${game_name}&page_size=6&ordering=-released`;

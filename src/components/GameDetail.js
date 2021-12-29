@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 
 //Util
-import { smallImage } from "./util/util";
+import { smallImage, getPlatform, getStars } from "./util/util";
 
 //Redux
 import { useSelector } from "react-redux";
@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 //React Router
 import { useNavigate } from "react-router-dom";
 
-export default function GameDetail({ pathId }) {
+export default function GameDetail() {
   const navigate = useNavigate();
 
   //Exit detail
@@ -34,19 +34,26 @@ export default function GameDetail({ pathId }) {
   return (
     <CardShadow className="shadow" onClick={exitDetailHandler}>
       {
-        <Detail layoutId={pathId}>
+        <Detail>
           {!loading && description[0] && (
             <>
               <Stats>
                 <div className="rating">
                   <h3>{description[0].name}</h3>
-                  <p>Rating {description[0].rating}</p>
+                  {/* <p>Rating {description[0].rating}</p> */}
+                  {getStars(description[0].rating)}
                 </div>
                 <Info>
                   <h3>Platforms</h3>
                   <Platforms>
                     {description[0].platforms.map((data) => {
-                      return <h3 key={uuidv4()}>{data.platform.name}</h3>;
+                      return (
+                        <img
+                          src={getPlatform(data.platform.name)}
+                          alt="platform name"
+                          key={uuidv4()}
+                        />
+                      );
                     })}
                   </Platforms>
                 </Info>
@@ -112,6 +119,12 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+  }
 `;
 
 const Info = styled(motion.div)`

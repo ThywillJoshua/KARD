@@ -3,10 +3,11 @@ import {
   GET_POPULAR_GAMES_REQUEST,
   GET_NEW_GAMES_REQUEST,
   GET_UPCOMING_GAMES_REQUEST,
+  GET_SEARCH_GAMES_REQUEST,
 } from "./gameActions";
 
 //url endpoints
-import { popularGames, upcomingGames, newGames } from "./apiUrl";
+import { popularGames, upcomingGames, newGames, gameSearch } from "./apiUrl";
 
 const slice = createSlice({
   name: "games",
@@ -14,6 +15,7 @@ const slice = createSlice({
     popularGames: [],
     newGames: [],
     upcomingGames: [],
+    searchGames: [],
     loading: false,
     error: "",
   },
@@ -27,19 +29,26 @@ const slice = createSlice({
       state.loading = false;
     },
 
+    CLEAR_SEARCHED: (state, action) => {
+      state.searchGames = [];
+      state.loading = false;
+    },
+
     GAMES_RECIEVED: (state, action) => {
       const { actionType, response } = action.payload;
 
       switch (actionType) {
         case GET_POPULAR_GAMES_REQUEST.type:
           state.popularGames = response.results;
-
           break;
         case GET_NEW_GAMES_REQUEST.type:
           state.newGames = response.results;
           break;
         case GET_UPCOMING_GAMES_REQUEST.type:
           state.upcomingGames = response.results;
+          break;
+        case GET_SEARCH_GAMES_REQUEST.type:
+          state.searchGames = response.results;
           break;
 
         default:
@@ -51,8 +60,12 @@ const slice = createSlice({
   },
 });
 
-export const { GAMES_RECIEVED, GAMES_REQUESTED, GAMES_REQUEST_FAILED } =
-  slice.actions;
+export const {
+  GAMES_RECIEVED,
+  GAMES_REQUESTED,
+  GAMES_REQUEST_FAILED,
+  CLEAR_SEARCHED,
+} = slice.actions;
 
 export default slice.reducer;
 
@@ -76,6 +89,14 @@ export const loadNewGames = () =>
 export const loadUpcomingGames = () =>
   GET_UPCOMING_GAMES_REQUEST({
     url: upcomingGames,
+    onSuccess: GAMES_RECIEVED.type,
+    onStart: GAMES_REQUESTED.type,
+    onError: GAMES_REQUEST_FAILED.type,
+  });
+
+export const loadSearchGames = (name) =>
+  GET_SEARCH_GAMES_REQUEST({
+    url: gameSearch(name),
     onSuccess: GAMES_RECIEVED.type,
     onStart: GAMES_REQUESTED.type,
     onError: GAMES_REQUEST_FAILED.type,

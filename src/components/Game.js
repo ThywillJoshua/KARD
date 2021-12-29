@@ -27,7 +27,7 @@ export default function Game({ name, releaseDate, id, image }) {
   };
 
   return (
-    <StyledGame layoutId={id} onClick={loadDetailHandler}>
+    <StyledGame onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
         <h3>{name}</h3>
         <p>{releaseDate}</p>

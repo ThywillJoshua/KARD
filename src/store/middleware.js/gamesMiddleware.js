@@ -5,6 +5,7 @@ import {
   GET_POPULAR_GAMES_REQUEST,
   GET_NEW_GAMES_REQUEST,
   GET_UPCOMING_GAMES_REQUEST,
+  GET_SEARCH_GAMES_REQUEST,
 } from "../gameActions";
 
 const gamesMiddleware =
@@ -14,7 +15,8 @@ const gamesMiddleware =
     if (
       (action.type !== GET_NEW_GAMES_REQUEST.type) &
       (action.type !== GET_UPCOMING_GAMES_REQUEST.type) &
-      (action.type !== GET_POPULAR_GAMES_REQUEST.type)
+      (action.type !== GET_POPULAR_GAMES_REQUEST.type) &
+      (action.type !== GET_SEARCH_GAMES_REQUEST.type)
     ) {
       return next(action);
     }
