@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 
-### Built primarily with love but also Vue.js
+### Built primarily with love but also React.js
 In order to get this project on your local machine, please fork the repository and then type the following command: git clone <p><code>REPO_URL</code></p> into a directory on your computer.
 <br>
 <br>
