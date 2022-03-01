@@ -43,12 +43,12 @@ Hosted by Netlify: https://play-kard.netlify.app/
 <br>
 <br>
 
-###What You Can expect in this Application:
+### What You Can expect in this Application:
 
-Entire UI built
-Search function to find other games
-Ability to view details of each game including Ratings, Platform etc
-Organized data can be view using the Redux chrome extension
+- Entire UI built using React JS
+- Search function to find other games
+- Ability to view details of each game including Ratings, Platform etc
+- Organized data can be view using the Redux chrome extension
 
 
 
