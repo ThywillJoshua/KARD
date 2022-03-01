@@ -2,19 +2,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ### Built primarily with love but also React.js
-In order to get this project on your local machine, please fork the repository and then type the following command: git clone <p><code>REPO_URL</code></p> into a directory on your computer.
+In order to get this project on your local machine, please fork the repository and then type the following command: git clone <code>REPO_URL</code> into a directory on your computer.
 <br>
 <br>
 
 
 ### Install Dependencies
-Once you've successfully cloned the repository, within the directory where you've cloned the project, please run: <p><code>npm install</code></p> to install necessary dependencies.
+Once you've successfully cloned the repository, within the directory where you've cloned the project, please run: <code>npm install</code> to install necessary dependencies.
 <br>
 <br>
 
 
 ### Local Development
-Now that the dependenices are installed, feel free to run <p><code>npm start</code></p> within the same directory. This will build a local development server with hot reloading. The default URL is http://localhost:3000.
+Now that the dependenices are installed, feel free to run <code>npm start</code> within the same directory. This will build a local development server with hot reloading. The default URL is http://localhost:3000.
 <br>
 <br>
 
