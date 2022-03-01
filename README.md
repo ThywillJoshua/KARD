@@ -1,44 +1,58 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Available Scripts
 
-In the project directory, you can run:
+### Built primarily with love but also Vue.js
+In order to get this project on your local machine, please fork the repository and then type the following command: git clone <p><code>REPO_URL</code></p> into a directory on your computer.
+<br>
+<br>
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Install Dependencies
+Once you've successfully cloned the repository, within the directory where you've cloned the project, please run: <p><code>npm install</code></p> to install necessary dependencies.
+<br>
+<br>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+### Local Development
+Now that the dependenices are installed, feel free to run <p><code>npm start</code></p> within the same directory. This will build a local development server with hot reloading. The default URL is http://localhost:3000.
+<br>
+<br>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Live Link
+Hosted by Netlify: https://play-kard.netlify.app/
+<br>
+<br>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Tools Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Redux Toolkit:**
 
-### `npm run eject`
+**Styled Components :**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Framer Motion :**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Axios :**
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Dotenv :**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Netlify :**
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br>
+<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+###What You Can expect in this Application:
+
+Entire UI built
+Search function to find other games
+Ability to view details of each game including Ratings, Platform etc
+Organized data can be view using the Redux chrome extension
+
+
+
+
+
+
+
