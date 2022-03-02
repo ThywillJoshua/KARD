@@ -58,7 +58,7 @@ export const getStars = (gameRating = 4) => {
 
 export const size = {
   xs: "320px",
-  sm: "768px",
+  sm: "1024px",
   lg: "1200px",
 };
 

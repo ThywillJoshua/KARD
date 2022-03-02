@@ -18,7 +18,14 @@ export default function NavBar() {
   const dispatch = useDispatch();
 
   const clickSearchHandler = () => {
+    setSearchInput("");
     dispatch(loadSearchGames(searchInput));
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      clickSearchHandler();
+    }
   };
 
   const clearSearchedHandler = () => {
@@ -36,6 +43,7 @@ export default function NavBar() {
           type="text"
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
+          onKeyPress={handleKeyPress}
         />
         <button onClick={clickSearchHandler}>Search</button>
       </div>
