@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 
 //Util
-import { smallImage, getPlatform, getStars } from "./util/util";
+import { smallImage, getPlatform, getStars, device } from "./util/util";
 
 //Redux
 import { useSelector } from "react-redux";
@@ -113,6 +113,13 @@ const Detail = styled(motion.div)`
   img {
     width: 100%;
   }
+
+  @media ${device.sm} {
+    flex-direction: column;
+    padding: 1rem 2rem;
+    width: 90%;
+    left: 5%;
+  }
 `;
 
 const Stats = styled(motion.div)`
@@ -125,10 +132,19 @@ const Stats = styled(motion.div)`
     height: 2rem;
     display: inline;
   }
+
+  @media ${device.sm} {
+    flex-direction: column;
+    text-align: center;
+  }
 `;
 
 const Info = styled(motion.div)`
   text-align: center;
+
+  @media ${device.sm} {
+    text-align: start;
+  }
 `;
 
 const Platforms = styled(motion.div)`
@@ -137,6 +153,14 @@ const Platforms = styled(motion.div)`
 
   img {
     margin-left: 3rem;
+  }
+
+  @media ${device.sm} {
+    justify-self: flex-start;
+
+    img {
+      margin-left: 0;
+    }
   }
 `;
 
