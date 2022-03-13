@@ -134,8 +134,8 @@ const Games = styled(motion.div)`
   min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  grid-template-rows: repeat(1, 35rem);
-  grid-auto-rows: 35rem;
+  grid-template-rows: repeat(1, minmax(20rem, max-content));
+  grid-auto-rows: repeat(1, minmax(20rem, max-content));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
 `;
